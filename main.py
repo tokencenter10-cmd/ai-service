@@ -20,7 +20,7 @@ def send_to_supabase(table, data):
     print("SUPABASE STATUS:", response.status_code)
     print("SUPABASE RESPONSE:", response.text)
 
-    return response.json()
+    return response
 
 @app.get("/")
 def home():
