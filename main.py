@@ -12,3 +12,33 @@ def send_to_supabase(table, data):
         "Prefer": "return=representation"
     }
     return requests.post(url, json=data, headers=headers)
+
+@app.post("/ai/fraud")
+def ai_fraud(data: dict):
+    score = len(str(data)) * 3
+
+    result = {
+        "user_id": data.get("user_id"),
+        "fraud_score": score
+    }
+
+    send_to_supabase("ai_predictions", result)
+
+    return result
+
+@app.post("/ai/pricing")
+def ai_pricing(data: dict):
+    base = data.get("price", 10000)
+
+    final = base * 1.2
+
+    result = {
+        "service_id": data.get("service_id"),
+        "final_price": final
+    }
+
+    send_to_supabase("dynamic_pricing", result)
+
+    return result
+
+
