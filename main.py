@@ -17,16 +17,10 @@ def send_to_supabase(table, data):
 
     response = requests.post(url, json=data, headers=headers)
 
-    print("SUPABASE STATUS:", response.status_code)
-    print("SUPABASE RESPONSE:", response.text)
+    print("🔥 SUPABASE STATUS:", response.status_code)
+    print("🔥 SUPABASE RESPONSE:", response.text)
 
-    # 🔥 INI PENTING
-    if response.status_code not in [200, 201]:
-        print("❌ INSERT FAILED")
-    else:
-        print("✅ INSERT SUCCESS")
-
-    return response
+    return response.text
 
 @app.get("/")
 def home():
