@@ -14,7 +14,12 @@ def send_to_supabase(table, data):
         "Content-Type": "application/json",
         "Prefer": "return=representation"
     }
-    return requests.post(url, json=data, headers=headers)
+
+    response = requests.post(url, json=data, headers=headers)
+
+    print("SUPABASE RESPONSE:", response.status_code, response.text)
+
+    return response.json()
 
 @app.get("/")
 def home():
