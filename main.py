@@ -17,7 +17,8 @@ def send_to_supabase(table, data):
 
     response = requests.post(url, json=data, headers=headers)
 
-    print("SUPABASE RESPONSE:", response.status_code, response.text)
+    print("SUPABASE STATUS:", response.status_code)
+    print("SUPABASE RESPONSE:", response.text)
 
     return response.json()
 
