@@ -4,7 +4,7 @@ import requests
 app = FastAPI()
 
 SUPABASE_URL = "https://awzyowlisedimhpgmppj.supabase.co"
-SUPABASE_KEY = "ISI_KEY_KAMU"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3enlvd2xpc2VkaW1ocGdtcHBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyNTMzOTUsImV4cCI6MjA5NTgyOTM5NX0.7662WWO8JpPSkILuVQIQZbJERMeGnzVye1DCpBFpDNw"
 
 def send_to_supabase(table, data):
     url = f"{SUPABASE_URL}/rest/v1/{table}"
