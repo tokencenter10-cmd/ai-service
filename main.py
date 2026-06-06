@@ -20,6 +20,12 @@ def send_to_supabase(table, data):
     print("SUPABASE STATUS:", response.status_code)
     print("SUPABASE RESPONSE:", response.text)
 
+    # 🔥 INI PENTING
+    if response.status_code not in [200, 201]:
+        print("❌ INSERT FAILED")
+    else:
+        print("✅ INSERT SUCCESS")
+
     return response
 
 @app.get("/")
