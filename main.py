@@ -1,7 +1,10 @@
+from fastapi import FastAPI
 import requests
 
-SUPABASE_URL = "https://awzyowlisedimhpgmppj.supabase.co/rest/v1/"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3enlvd2xpc2VkaW1ocGdtcHBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyNTMzOTUsImV4cCI6MjA5NTgyOTM5NX0.7662WWO8JpPSkILuVQIQZbJERMeGnzVye1DCpBFpDNw"
+app = FastAPI()
+
+SUPABASE_URL = "https://awzyowlisedimhpgmppj.supabase.co"
+SUPABASE_KEY = "ISI_KEY_KAMU"
 
 def send_to_supabase(table, data):
     url = f"{SUPABASE_URL}/rest/v1/{table}"
@@ -12,6 +15,10 @@ def send_to_supabase(table, data):
         "Prefer": "return=representation"
     }
     return requests.post(url, json=data, headers=headers)
+
+@app.get("/")
+def home():
+    return {"status": "AI running"}
 
 @app.post("/ai/fraud")
 def ai_fraud(data: dict):
@@ -29,7 +36,6 @@ def ai_fraud(data: dict):
 @app.post("/ai/pricing")
 def ai_pricing(data: dict):
     base = data.get("price", 10000)
-
     final = base * 1.2
 
     result = {
@@ -40,5 +46,3 @@ def ai_pricing(data: dict):
     send_to_supabase("dynamic_pricing", result)
 
     return result
-
-
