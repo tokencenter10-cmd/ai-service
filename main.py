@@ -57,6 +57,7 @@ def ai_fraud(data: dict):
 
     result = {
         "user_id": str(uuid.uuid4()),
+        "model_version": "v1.0",
         "fraud_score": score,
         "behavior_score": behavior_score,
         "reliability_score": reliability_score,
