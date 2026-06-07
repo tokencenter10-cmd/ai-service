@@ -47,13 +47,17 @@ def ai_fraud(data: dict):
 
     score = len(str(data)) * 3
 
-    behavior_score = max(0, 100 - score)
+    # HITUNG BEHAVIOR SCORE
+    if score < 50:
+        behavior_score = 100
+    elif score < 100:
+        behavior_score = 80
+    elif score < 150:
+        behavior_score = 60
+    else:
+        behavior_score = 30
 
     reliability_score = 95 if score < 150 else 50
-
-    piercing_multiplier = 1.0
-
-    confidence = 90
 
     result = {
         "user_id": str(uuid.uuid4()),
@@ -61,7 +65,7 @@ def ai_fraud(data: dict):
         "fraud_score": score,
         "behavior_score": behavior_score,
         "reliability_score": reliability_score,
-         "pricing_multiplier": 1,
+        "pricing_multiplier": 1,
         "confidence": 90
     }
 
