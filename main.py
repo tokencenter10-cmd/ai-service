@@ -47,10 +47,21 @@ def ai_fraud(data: dict):
 
     score = len(str(data)) * 3
 
-    # 🔥 FIX UTAMA DI SINI
+    behavior_score = max(0, 100 - score)
+
+    reliability_score = 95 if score < 150 else 50
+
+    piercing_multiplier = 1.0
+
+    confidence = 90
+
     result = {
-        "user_id": str(uuid.uuid4()),  # AUTO UUID (NO ERROR LAGI)
-        "fraud_score": score
+        "user_id": str(uuid.uuid4()),
+        "fraud_score": score,
+        "behavior_score": behavior_score,
+        "reliability_score": reliability_score,
+        "pierching_multiplier": piercing_multiplier,
+        "confidence": confidence
     }
 
     db_result = send_to_supabase("ai_predictions", result)
