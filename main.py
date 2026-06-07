@@ -60,8 +60,8 @@ def ai_fraud(data: dict):
         "fraud_score": score,
         "behavior_score": behavior_score,
         "reliability_score": reliability_score,
-        "pierching_multiplier": piercing_multiplier,
-        "confidence": confidence
+         "pricing_multiplier": 1,
+        "confidence": 90
     }
 
     db_result = send_to_supabase("ai_predictions", result)
